@@ -1,0 +1,41 @@
+.group{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 30px;
+    width: 100%;
+    min-height: 70px;
+    max-height: 70px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+.group-logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border:none;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    background:#0047FF;
+    color:#FFFFFF ;
+    font-size: 1.4rem;
+    font-weight: 500;
+    font-family: roboto;
+    letter-spacing: 1px;
+
+}
+.group>h3{
+    margin: 0;
+    margin-left: 5%;
+    font-weight: 500;
+    font-family: Roboto;
+    letter-spacing: 0.02em;
+    font-size: 1.4rem;
+    color: black;
+}
+.group:hover{
+    background: rgba(174, 173, 173, 0.356);
+    border-radius: 5px;
+    border: none;
+}
