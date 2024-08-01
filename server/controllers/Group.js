@@ -8,22 +8,23 @@ const errorResponse = (res, statusCode, message) => {
     });
 };
 
-exports.creatGroup=async (req,res)=>{
+exports.createGroup=async (req,res)=>{
     try {
-        const {groupName,groupColor}=req.body;
-        if(!groupName||!groupColour){
+        const {groupName,groupColor,groupLogo}=req.body;
+        if(!groupName||!groupColor||!groupLogo){
             return errorResponse(res,400,"All fields are required..")
         }
         const group=await Group.create({
             groupName,
-            groupColor
+            groupColor,
+            groupLogo
         })
         return res.status(201).json({
             success:false,
             message:"Group Created Succesfully",
-            data:{_id:group._id,groupName:groupName,groupColor:groupColor}
+            data:{_id:group._id,groupName:groupName,groupColor:groupColor,groupLogo:groupLogo}
         })
-    } catch (error) {
+    } catch (err) {
         console.error(err);
         errorResponse(res, 500, 'Internal server error');
     }
@@ -31,13 +32,13 @@ exports.creatGroup=async (req,res)=>{
 
 exports.getGroups=async (req,res)=>{
     try {
-        const groups=await Group.find({}).select("_id groupName groupColor");
+        const groups=await Group.find({}).select("_id groupName groupColor groupLogo");
         return res.status(201).json({
             success:false,
             message:"Groups fetched Succesfully",
             data:groups
         })
-    } catch (error) {
+    } catch (err) {
         console.error(err);
         errorResponse(res, 500, 'Internal server error');
     }

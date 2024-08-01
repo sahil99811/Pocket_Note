@@ -10,8 +10,9 @@ const Group = ({ data }) => {
 
   // Function to handle click event on the group item
   const onClickHandler = () => {
+    console.log(data._id);
     // Dispatch action to set the selected group
-    dispatch(setSelectedGroup(data));
+    dispatch(setSelectedGroup(data._id));
   };
 
   return (

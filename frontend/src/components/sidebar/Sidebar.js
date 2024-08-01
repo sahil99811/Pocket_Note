@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../../styles/SideBar.css';
 import GroupCard from './GroupCard';
-import { useSelector } from 'react-redux';
+import {setGroups} from '../../slices/groupSlice'
+import { useSelector ,useDispatch} from 'react-redux';
+import {getGroups} from '../../apis/Group';
 
-// Sidebar component displays a list of groups and a button to create a new group
-// Props:-openModal: Function to open the modal for creating a new group
+
 const Sidebar = ({ openModal }) => {
   // Get groups from Redux store
   const { groups } = useSelector((state) => state.group);
- 
+  const dispatch=useDispatch();
+  const getGroup=async ()=>{
+       const result=await getGroups();
+       if(result){
+        dispatch(setGroups(result))
+       }
+  }
+  useEffect(()=>{
+     getGroup();
+  },[ ])
   return (
     <div className='sidebar-container' >
       <h2>Pocket Notes</h2>

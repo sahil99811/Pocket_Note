@@ -3,7 +3,7 @@ import '../../styles/CreateGroup.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { setGroups } from '../../slices/groupSlice';
 import { toast } from 'react-toastify';
-
+import {addGroup} from '../../apis/Group'
 // Define available colors for the group
 const colors = ["#B38BFA", "#FF79F2", "#43E6FC", "#F19576", "#0047FF", "#6691FF"];
 
@@ -45,7 +45,7 @@ export default function CreateGroup({ closeModal }) {
   };
 
   // Function to handle group creation
-  const createGroup = (event) => {
+  const createGroup =async (event) => {
     event.preventDefault();
     const { groupName, groupColor } = groupData;
 
@@ -69,22 +69,17 @@ export default function CreateGroup({ closeModal }) {
 
     // Create new group object
     const logo = splitGroupName(groupName);
-    const newGroup = {
-      groupName: groupName,
-      groupColor: groupColor,
-      groupLogo: logo
-    };
+    const newGroup=await addGroup(groupName,groupColor,logo)
+    if(newGroup){
+        // Dispatch action to update Redux state
+       const newGroups = [...groups, newGroup];
+       dispatch(setGroups(newGroups));
 
-    // Dispatch action to update Redux state
-    const newGroups = [...groups, newGroup];
-    dispatch(setGroups(newGroups));
-
-    // Save to local storage (optional)
-    localStorage.setItem("groupData", JSON.stringify(newGroups));
-
-    // Display success message and close modal
-    toast.success("Group Created Successfully");
-    closeModal();
+      // Display success message and close modal
+      toast.success("Group Created Successfully");
+      closeModal();
+    }
+   
   };
 
   return (

@@ -9,6 +9,10 @@ const groupSchema=new mongoose.Schema({
         type:String,
         required:true
     },
+    groupLogo:{
+        type:String,
+        required:true
+    },
     notes:[
         {
             type:mongoose.Types.ObjectId,
