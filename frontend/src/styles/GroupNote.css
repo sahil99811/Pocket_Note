@@ -1,0 +1,111 @@
+.groupName-container{
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    height: 100vh;
+    position: relative;
+ }
+ .header{
+     background-color: #001F8B;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     gap: 12px;
+     width: inherit;
+     min-height: 70px;
+     max-height: 70px;
+ }
+ .arrow-button {
+     background: none;
+     border: none;
+     padding: 0;
+     cursor: pointer;
+   }
+   
+ .arrow-button:focus {
+     outline: none; 
+ }
+ .arrow{
+     margin-left: 20px;
+     color: #FFFFFF;
+     width:20px ;
+     cursor: pointer;
+     display: none;
+ }
+ .groupLogo{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     border:none;
+     border-radius: 100%;
+     width: 50px;
+     height:50px;
+     background:#0047FF;
+     color:#FFFFFF ;
+     font-size: 22px;
+     font-weight: 500;
+     font-family: roboto;
+     letter-spacing: 3%;
+     margin-left: 20px;
+ }
+ .header>p{
+     font-weight: 500;
+     font-family: roboto;
+     letter-spacing:3%;
+     font-size: 22px;
+     color:#FFFFFF;
+ }
+ .groupNotes{
+   width: inherit;
+   background-color:#DAE5F5;
+   overflow-y: auto;
+   height: calc(100% - 210px);
+ }
+ .inputNote-container{
+   width: inherit;
+   height: 140px;
+   background-color:#001F8B ;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: fixed;
+   bottom: 0;
+ }
+ .inputNote{
+     width: 95%;
+     height: 85%; 
+     background-color: #FFFFFF;
+     border-radius: 5px;
+ }
+ textarea{
+     min-width: 90%;
+     max-width: 90%;
+     min-height:85%;
+     max-height: 85%;
+     border: none;
+     padding: 8px 8px;
+     margin-left: 4px;
+     font-family: "Roboto";
+     font-weight: 400;
+     font-size: 1.2rem;
+     letter-spacing: 2%;
+     color: #9A9A9A;
+ }
+ textarea:focus{
+     outline: none;
+ }
+ .sendNote{
+     position: absolute;
+     bottom: 0;
+     right: 0;
+     margin-right: 35px;
+     margin-bottom: 20px;
+     cursor: pointer;
+     width: 30px;
+ }
+ @media (max-width:850px) {
+     .groupName-container{
+         width:60vw
+     }
+ }
+

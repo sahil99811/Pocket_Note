@@ -12,7 +12,7 @@ const Group = ({ data }) => {
   const onClickHandler = () => {
     console.log(data._id);
     // Dispatch action to set the selected group
-    dispatch(setSelectedGroup(data._id));
+    dispatch(setSelectedGroup(data));
   };
 
   return (

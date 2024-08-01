@@ -3,7 +3,7 @@ import { toast } from 'react-hot-toast';
 const backendURL = process.env.REACT_APP_BACKEND_BASE_URL
 export const createNote=async (text,groupId)=>{
     try {
-        const result=await axios.post(`${backendURL}/group/${groupId}`,{
+        const result=await axios.post(`${backendURL}/note/${groupId}`,{
             text
        },{
            validateStatus(status){
@@ -27,7 +27,8 @@ export const createNote=async (text,groupId)=>{
 
 export const getNotes=async (groupId)=>{
     try {
-        const result=await axios.post(`${backendURL}/group/${groupId}`,{
+        console.log(backendURL,groupId)
+        const result=await axios.get(`${backendURL}/notes/${groupId}`,{
            validateStatus(status){
                return status===400||status===204||status===201
            }
@@ -38,7 +39,7 @@ export const getNotes=async (groupId)=>{
        }
        else if (result.status === 201 ) {
            toast.success(result.data.message); 
-           return result.data.data; 
+           return result.data.data?.notes; 
        }  
     } catch (error) {
         console.log(error);

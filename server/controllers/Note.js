@@ -11,7 +11,7 @@ exports.createNote=async (req,res)=>{
     try {
         const {text}=req.body;
         const {groupId}=req.params;
-        if(!note){
+        if(!text){
             return errorResponse(res,400,"Note is required");
         }
         else if (!mongoose.Types.ObjectId.isValid(groupId)) {
@@ -29,7 +29,7 @@ exports.createNote=async (req,res)=>{
         success: true,
         message: "Note created successfully"
       });
-    } catch (error) {
+    } catch (err) {
         console.error(err);
         errorResponse(res, 500, 'Internal server error');
     }
@@ -44,7 +44,7 @@ exports.getNotes=async (req,res)=>{
         if (!mongoose.Types.ObjectId.isValid(groupId)) {
             return errorResponse(res,404,"Invalid group ID");
         }
-        const Notes=await Group.findById({_id:groupId}).select("_id groupName groupColor notes").populate({
+        const Notes=await Group.findById({_id:groupId}).select("notes createdAt").populate({
             path:"notes"
         })
         return res.status(201).json({
